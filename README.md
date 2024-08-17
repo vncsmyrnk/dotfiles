@@ -1,8 +1,13 @@
-# config
+# Config Utils ⚙️
 
-My linux config for general purposes.
+My linux tools config for general purposes.
 
-Each config tool is a submodule and must be able to install itself
+Each config tool is a submodule and must be able to install itself.
+
+## Motivation
+
+- Gather all configuration files for general purpose _CLI_ tools in one place.
+- Have a unique and modular installer
 
 ## Structure expected for each module
 
