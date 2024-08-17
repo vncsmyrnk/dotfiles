@@ -9,9 +9,27 @@ Each config tool is a submodule and must be able to install itself.
 - Gather all configuration files for general purpose _CLI_ tools in one place.
 - Have a unique and modular installer
 
+## Usage
+
+```bash
+git clone git@github.com:vncsmyrnk/confutils.git $HOME
+cd $HOME/confutils
+git submodule init
+git submodule update
+
+# run `install.sh` or `config.sh` depending on your needs
+```
+
 ## Structure expected for each module
 
-Modules must have an `install.sh` in the project root with this format:
+Modules must have an `install.sh` in the project root and have the functions `symolic_install` and `config`.
+
+- `symoblic_install`: Install depencencies and create symbolic links to the configuration paths.
+- `config`: Just create the symoblic links considering the dependencies are already installed
+
+Example: `zsh-config` has a `.zshrc`. Inside that project, `symoblic_install` must install `zsh` and create a symbolic link of that file to `$HOME/.zshrc`.`config` must just create the symbolic links.
+
+Example format:
 
 ```bash
 #!/bin/bash
@@ -34,6 +52,10 @@ done
 
 before() {
   echo "example before"
+}
+
+config() {
+  echo "example config"
 }
 
 symbolic_install() {
