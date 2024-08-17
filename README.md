@@ -1,2 +1,3 @@
 # config
-My linux config for general purposes
+
+My linux config for general purposes.
