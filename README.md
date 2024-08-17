@@ -51,23 +51,25 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 before() {
-  echo "example before"
+  # Install al the dependencies
 }
 
 config() {
-  echo "example config"
+  # Create the symbolic links only
 }
 
 symbolic_install() {
   before
-  echo "example symbolic install"
+  config
 }
 
 install() {
   before
-  echo "example main"
+  # Install depencies without needing to clone the project
+  # Consider this part only be called in a expression like: `bash <(curl -s https://raw.githubusercontent.com/<USER>/<PROJECT>/main/install.sh)`
 }
 
+# If a `--sourcing` flag is passed, the default `install` should not be called
 if [[ "$sourcing" = "false" ]]; then
   install
 fi
