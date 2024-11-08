@@ -1,4 +1,4 @@
-# Config Utils ⚙️
+# .dotfiles ⚙️
 
 My linux tools config for general purposes.
 
