@@ -1,6 +1,10 @@
 default:
   just --list
 
+update-configs:
+  git submodule init
+  git submodule update --recursive --remote
+
 config:
   #!/bin/bash
   for config in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
@@ -10,7 +14,7 @@ config:
 config-this name:
   cd {{source_directory()}}/{{name}} && just config
 
-install:
+install: update-configs
   #!/bin/bash
   for file in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
     cd {{source_directory()}}/$file && just install
