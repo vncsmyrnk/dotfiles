@@ -2,14 +2,14 @@
 
 My linux tools config for general purposes.
 
-Each config tool is a submodule and must be able to install itself.
-
 ## Motivation
 
 - Gather all configuration files for general purpose _CLI_ tools in one place.
 - Have a unique and modular installer
 
-## Strcuture expected
+## Structure expected
+
+Each config tool is a submodule and must be able to install itself.
 
 Each module must have a `justfile` with the following recipes:
 
@@ -22,7 +22,5 @@ Each module must have a `justfile` with the following recipes:
 ```bash
 git clone git@github.com:vncsmyrnk/dotfiles.git $HOME
 cd $HOME/dotfiles
-git submodule init
-git submodule update
-just install # or `just config`
+just install
 ```
