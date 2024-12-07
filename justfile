@@ -23,14 +23,14 @@ install: update-configs
 install-this name:
   cd {{source_directory()}}/{{name}} && just install
 
-delete-config:
+unset-config:
   #!/bin/bash
   for file in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
-    cd {{source_directory()}}/$file && just delete-config
+    cd {{source_directory()}}/$file && just unset-config
   done
 
-delete-config-this name:
-  cd {{source_directory()}}/{{name}} && just delete-config
+unset-config-this name:
+  cd {{source_directory()}}/{{name}} && just unset-config
 
 env:
   @curl -L "https://drive.google.com/uc?export=download&id=10CiS_hWr3nZBs3ca9cVwtKJw7AAt7OXL" -o ~/.env.enc
