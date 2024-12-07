@@ -13,14 +13,14 @@ Each config tool is a submodule and must be able to install itself.
 
 Each module must have a `justfile` with the following recipes:
 
-- `install`: Install dependencies and run configuration commands (usually with `stow`)
-- `config`: Run the config commands only
-- `delete-config`: Undo the config (usually with `stow -D`)
+- `install`: Installs dependencies and run configuration commands (usually with `stow`)
+- `config`: Runs the config commands only
+- `unset-config`: Unsets the config (usually with `stow -D`)
 
 ## Usage
 
 ```bash
-git clone git@github.com:vncsmyrnk/dotfiles.git $HOME
+git clone git@github.com:vncsmyrnk/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 just install
 ```
