@@ -10,3 +10,6 @@
 [submodule "kitty-config"]
 	path = kitty-config
 	url = git@github.com:vncsmyrnk/kitty-config.git
+[submodule "gnome-config"]
+	path = gnome-config
+	url = git@github.com:vncsmyrnk/gnome-config.git
