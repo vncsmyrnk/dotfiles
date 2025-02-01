@@ -16,8 +16,8 @@ config-this name:
 
 install: update-configs
   #!/bin/bash
-  for file in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
-    cd {{source_directory()}}/$file && just install
+  for config in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
+    cd {{source_directory()}}/$config && just install
   done
 
 install-this name:
@@ -25,8 +25,8 @@ install-this name:
 
 unset-config:
   #!/bin/bash
-  for file in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
-    cd {{source_directory()}}/$file && just unset-config
+  for config in $(git config --file .gitmodules --get-regexp path | awk '{ print $2 }'); do
+    cd {{source_directory()}}/$config && just unset-config
   done
 
 unset-config-this name:
