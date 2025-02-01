@@ -31,3 +31,19 @@ unset-config:
 
 unset-config-this name:
   cd {{source_directory()}}/{{name}} && just unset-config
+
+test-recipes:
+  #!/bin/bash
+  for config in $(find * -maxdepth 0 -type d -not -path './.git'); do
+    justfile_path="$config/justfile"
+    [ -f $justfile_path ] && {
+      grep -q "^config:" $justfile_path && \
+      grep -q "^unset-config:" $justfile_path && \
+      grep -q "^install:" $justfile_path
+    }
+
+    if [ ! "$?" -eq 0 ]; then
+      echo "$config not valid. Each module must have a justfile with config, unset-config and install recipes"
+      exit 1
+    fi
+  done
