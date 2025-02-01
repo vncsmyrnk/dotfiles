@@ -31,8 +31,3 @@ unset-config:
 
 unset-config-this name:
   cd {{source_directory()}}/{{name}} && just unset-config
-
-env:
-  @curl -L "https://drive.google.com/uc?export=download&id=10CiS_hWr3nZBs3ca9cVwtKJw7AAt7OXL" -o ~/.env.enc
-  @openssl enc -aes-256-cbc -d -in ~/.env.enc -out ~/.env -pbkdf2 || rm ~/.env ;\
-  rm ~/.env.enc
