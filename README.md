@@ -22,5 +22,6 @@ Each module must have a `justfile` with the following recipes:
 ```bash
 git clone git@github.com:vncsmyrnk/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
+./before-install.sh
 just install
 ```
