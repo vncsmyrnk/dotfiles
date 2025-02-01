@@ -13,3 +13,6 @@
 [submodule "gnome-config"]
 	path = gnome-config
 	url = git@github.com:vncsmyrnk/gnome-config.git
+[submodule "git-config"]
+	path = git-config
+	url = git@github.com:vncsmyrnk/git-config.git
