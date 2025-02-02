@@ -1,18 +1,18 @@
-[submodule "nvim-config"]
-	path = nvim-config
+[submodule "nvim"]
+	path = nvim
 	url = git@github.com:vncsmyrnk/nvim-config.git
-[submodule "zsh-config"]
-	path = zsh-config
+[submodule "zsh"]
+	path = zsh
 	url = git@github.com:vncsmyrnk/zsh-config.git
-[submodule "tmux-config"]
-	path = tmux-config
+[submodule "tmux"]
+	path = tmux
 	url = git@github.com:vncsmyrnk/tmux-config.git
-[submodule "kitty-config"]
-	path = kitty-config
+[submodule "kitty"]
+	path = kitty
 	url = git@github.com:vncsmyrnk/kitty-config.git
-[submodule "gnome-config"]
-	path = gnome-config
+[submodule "gnome"]
+	path = gnome
 	url = git@github.com:vncsmyrnk/gnome-config.git
-[submodule "git-config"]
-	path = git-config
+[submodule "git"]
+	path = git
 	url = git@github.com:vncsmyrnk/git-config.git
