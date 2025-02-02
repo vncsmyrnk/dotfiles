@@ -25,3 +25,6 @@ cd $HOME/dotfiles
 ./before-install.sh
 just install
 ```
+
+> [!WARNING]
+> - For configs breaking changes make sure to _unset_ its config and then _config_ it again.
