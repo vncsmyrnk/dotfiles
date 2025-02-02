@@ -17,14 +17,14 @@ Each module must have a `justfile` with the following recipes:
 - `config`: Runs the config commands only
 - `unset-config`: Unsets the config (usually with `stow -D`)
 
-## Usage
+## Install
 
 ```bash
 git clone git@github.com:vncsmyrnk/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
-./before-install.sh
-just install
+./before-install.sh # checks base dependencies
+just install        # actually installs and configs modules
 ```
 
 > [!WARNING]
-> - For configs breaking changes make sure to _unset_ its config and then _config_ it again.
+> When updating with breaking changes make sure to _unset_ the updated config and then _config_ it again.
