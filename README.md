@@ -28,4 +28,4 @@ just install        # actually installs and configs modules
 
 > [!WARNING]
 > - When updating with breaking changes make sure to _unset_ the updated config and then _config_ it again.
-> - It is recommended to config each module individually. As it contains useful environment vars, `zsh` should be configured first
+> - It is recommended to config each module individually. As it contains useful environment vars `zsh` should be configured first, then `shell-utils` and then the rest.

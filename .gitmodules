@@ -16,3 +16,6 @@
 [submodule "git"]
 	path = git
 	url = git@github.com:vncsmyrnk/git-config.git
+[submodule "shell-utils"]
+	path = shell-utils
+	url = git@github.com:vncsmyrnk/shell-utils.git
