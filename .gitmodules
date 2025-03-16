@@ -19,3 +19,6 @@
 [submodule "shell-utils"]
 	path = shell-utils
 	url = git@github.com:vncsmyrnk/shell-utils.git
+[submodule "keyd"]
+	path = keyd
+	url = git@github.com:vncsmyrnk/keyd-config.git
