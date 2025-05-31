@@ -22,3 +22,6 @@
 [submodule "keyd"]
 	path = keyd
 	url = git@github.com:vncsmyrnk/keyd-config.git
+[submodule "nix"]
+	path = nix
+	url = git@github.com:vncsmyrnk/nix-config.git
