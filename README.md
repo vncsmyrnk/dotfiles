@@ -17,7 +17,7 @@ Each module must have a `justfile` with the following recipes:
 - `config`: Runs the config commands only
 - `unset-config`: Unsets the config (usually with `stow -D`)
 
-A module can be its own repo or commited directly into this repo.
+A module can be its own repo or commited directly into this repo on the _extra_ folder.
 
 ## Install
 
