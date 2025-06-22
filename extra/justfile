@@ -1,0 +1,19 @@
+os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
+
+default:
+  just --list
+
+install-dbeaver:
+  #!/bin/bash
+  if [ "{{os}}" = "Ubuntu" ]; then
+    sudo add-apt-repository ppa:serge-rider/dbeaver-ce
+    sudo apt-get install dbeaver-ce
+  fi
+
+install: install-dbeaver
+
+config:
+  @echo "config for extra is saved separatedly."
+
+unset-config:
+  @echo "not possible to unset all config for extra at once. Do it manually."
