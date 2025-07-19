@@ -3,6 +3,13 @@ os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 default:
   just --list
 
+install-essential:
+  if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
+    sudo apt-get install build-essential
+  elif [ "{{os}}" = "Arch Linux" ]; then
+    sudo pacman -S base-devel
+  fi
+
 install-dbeaver:
   #!/bin/bash
   if [ "{{os}}" = "Ubuntu" ]; then
@@ -10,7 +17,7 @@ install-dbeaver:
     sudo apt-get install dbeaver-ce
   fi
 
-install: install-dbeaver
+install: install-essential install-dbeaver
 
 config:
   @echo "config for extra is saved separatedly."
