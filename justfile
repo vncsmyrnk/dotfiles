@@ -12,7 +12,7 @@ pull-latest-configs:
 config +configs:
   #!/bin/bash
   for config in {{configs}}; do
-    cd {{source_directory()}}/$config && just install
+    cd {{source_directory()}}/$config && just config
   done
 
 install +configs:
