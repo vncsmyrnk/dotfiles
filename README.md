@@ -17,7 +17,7 @@ Each module must have a `justfile` with the following recipes:
 - `config`: Runs the config commands only
 - `unset-config`: Unsets the config (usually with `stow -D`)
 
-A module can be its own repo or commited directly into this repo on the _extra_ folder.
+A module can be its own repo or commited directly into this repo on the _extra_ folder. The _extra_ folders should contain non-essential configs not relevant enough for having its own repo.
 
 ## Install
 
@@ -26,6 +26,7 @@ git clone git@github.com:vncsmyrnk/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 ./before-install.sh         # checks base dependencies
 just install {config-name}  # actually installs and configs modules
+just extra install          # installs extra configs
 ```
 
 > [!WARNING]

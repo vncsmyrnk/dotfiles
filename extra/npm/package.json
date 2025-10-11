@@ -1,0 +1,10 @@
+{
+  "name": "npm-globals",
+  "version": "0.0.0",
+  "description": "global installed CLI npm packages",
+  "license": "ISC",
+  "author": "",
+  "dependencies": {
+    "prettier": "^3.6.2"
+  }
+}

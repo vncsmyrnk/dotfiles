@@ -1,3 +1,5 @@
+mod extra
+
 default:
   just --list
 
@@ -10,25 +12,28 @@ pull-latest-configs:
   git submodule foreach "git checkout main && git pull --rebase"
 
 config +configs:
-  #!/bin/bash
+  #!/usr/bin/env bash
   for config in {{configs}}; do
     cd {{source_directory()}}/$config && just config
   done
 
 install +configs:
-  #!/bin/bash
+  #!/usr/bin/env bash
   for config in {{configs}}; do
     cd {{source_directory()}}/$name && just install
   done
 
 unset-config +configs:
-  #!/bin/bash
+  #!/usr/bin/env bash
   for config in {{configs}}; do
     cd {{source_directory()}}/$config && just unset-config
   done
 
+install-extra:
+  @just extra install
+
 test-recipes:
-  #!/bin/bash
+  #!/usr/bin/env bash
   for config in $(find * -maxdepth 0 -type d -not -path './.git'); do
     justfile_path="$config/justfile"
     [ -f $justfile_path ] && {
