@@ -1,5 +1,6 @@
 global_packages_path := x'$HOME/.local/share/npm-globals'
 rc_path := "${SU_RC_SOURCE_PATH:-$HOME/.config/util/setup}/npm"
+on_update_scripts_path := "${SU_SCRIPTS_ON_UPDATE_PATH:-$HOME/.config/util/scripts/on-update}"
 
 install:
   mkdir -p {{global_packages_path}} {{rc_path}}
@@ -7,9 +8,11 @@ install:
   @just config
 
 config:
-  stow -t {{global_packages_path}} . --ignore='^config'
+  stow -t {{global_packages_path}} . --ignore='^config' --ignore='^scripts'
   stow -t {{rc_path}} config --no-folding
+  stow -t {{on_update_scripts_path}} scripts
 
 unset-config:
-  stow -D -t {{global_packages_path}} . --ignore='^config'
+  stow -D -t {{global_packages_path}} . --ignore='^config' --ignore='^scripts'
   stow -D -t {{rc_path}} config --no-folding
+  stow -D -t {{on_update_scripts_path}} scripts

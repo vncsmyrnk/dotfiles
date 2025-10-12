@@ -26,7 +26,6 @@ git clone git@github.com:vncsmyrnk/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 ./before-install.sh         # checks base dependencies
 just install {config-name}  # actually installs and configs modules
-just extra install          # installs extra configs
 ```
 
 > [!WARNING]
