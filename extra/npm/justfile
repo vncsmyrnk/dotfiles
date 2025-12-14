@@ -8,6 +8,7 @@ install:
   @just config
 
 config:
+  mkdir -p {{global_packages_path}} {{rc_path}}
   stow -t {{global_packages_path}} . --ignore='^config' --ignore='^scripts'
   stow -t {{rc_path}} config --no-folding
   stow -t {{on_update_scripts_path}} scripts
