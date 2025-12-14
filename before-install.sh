@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 os=$(cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"')
-deps=(git just)
+
+echo "downloading modules..."
+git submodule init
+git submodule update
 
 echo "Checking base deps..."
-command -v $deps >/dev/null && {
+command -v git >/dev/null && command -v just >/dev/null && {
   echo "deps OK."
   exit 0
 }
