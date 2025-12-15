@@ -10,7 +10,8 @@ install-essential:
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install build-essential libmysqlclient-dev
   elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S base-devel mariadb-clients
+    sudo pacman -S base-devel mariadb-clients git docker docker-compose \
+      stow lsof google-chrome discord fastfetch tree
   fi
 
 install-dbeaver:
