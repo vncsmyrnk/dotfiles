@@ -14,6 +14,12 @@ install-essential:
       stow lsof google-chrome discord fastfetch tree
   fi
 
+install-extra:
+  #!/usr/bin/env bash
+  if [ "{{os}}" = "Arch Linux" ]; then
+    sudo pacman -S go golangci-lint vault
+  fi
+
 install-dbeaver:
   #!/usr/bin/env bash
   if [ "{{os}}" = "Ubuntu" ]; then
