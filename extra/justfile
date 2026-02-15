@@ -1,7 +1,5 @@
 os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 
-mod npm
-
 default:
   just --list
 
@@ -10,40 +8,7 @@ install-essential:
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install build-essential libmysqlclient-dev
   elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S base-devel mariadb-clients git docker docker-compose \
-      stow lsof google-chrome discord fastfetch tree man-db pass wl-clipboard
+    sudo pacman -S --needed - < pacman.txt
   fi
 
-install-extra:
-  #!/usr/bin/env bash
-  if [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S go golangci-lint vault
-  fi
-
-install-dbeaver:
-  #!/usr/bin/env bash
-  if [ "{{os}}" = "Ubuntu" ]; then
-    sudo add-apt-repository ppa:serge-rider/dbeaver-ce
-    sudo apt-get install dbeaver-ce
-  fi
-
-install-vault:
-  #!/usr/bin/env bash
-  if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
-    # INFO: https://developer.hashicorp.com/vault/install
-    wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" \
-      | sudo tee /etc/apt/sources.list.d/hashicorp.list
-    sudo apt update && sudo apt install vault
-  elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S vault
-  fi
-
-install: install-essential install-vault install-dbeaver
-  @just npm::install
-
-config:
-  @just npm::config
-
-unset-config:
-  @just npm::unset-config
+install: install-essential

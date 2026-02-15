@@ -1,5 +1,0 @@
-# vim: set ft=sh
-
-#!/bin/sh
-
-PATH="$PATH:$HOME/.local/share/npm-globals/node_modules/.bin"
