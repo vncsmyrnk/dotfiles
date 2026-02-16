@@ -8,7 +8,7 @@ install-essential:
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install build-essential libmysqlclient-dev
   elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S --needed - < pacman.txt
+    yay -S --needed - < packages/pacman/*
   fi
 
 install: install-essential
