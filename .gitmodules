@@ -25,3 +25,6 @@
 [submodule "nix"]
 	path = nix
 	url = git@github.com:vncsmyrnk/nix-config.git
+[submodule "rofi"]
+	path = rofi
+	url = git@github.com:vncsmyrnk/rofi-config.git

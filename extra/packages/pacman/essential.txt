@@ -20,3 +20,4 @@ sshfs
 mkcert
 rclone
 neovim
+rofi
