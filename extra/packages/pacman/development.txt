@@ -15,3 +15,5 @@ prettier
 luarocks
 ngrok
 htmlq
+npm
+yarn
