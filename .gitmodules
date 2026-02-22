@@ -7,9 +7,6 @@
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:vncsmyrnk/tmux-config.git
-[submodule "kitty"]
-	path = kitty
-	url = git@github.com:vncsmyrnk/kitty-config.git
 [submodule "gnome"]
 	path = gnome
 	url = git@github.com:vncsmyrnk/gnome-config.git
@@ -25,3 +22,6 @@
 [submodule "rofi"]
 	path = rofi
 	url = git@github.com:vncsmyrnk/rofi-config.git
+[submodule "ghostty"]
+	path = ghostty
+	url = git@github.com:vncsmyrnk/ghostty-config.git
