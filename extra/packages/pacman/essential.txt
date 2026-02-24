@@ -21,3 +21,4 @@ mkcert
 rclone
 neovim
 rofi
+htop
