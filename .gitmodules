@@ -25,3 +25,6 @@
 [submodule "ghostty"]
 	path = ghostty
 	url = git@github.com:vncsmyrnk/ghostty-config.git
+[submodule "nix"]
+	path = nix
+	url = git@github.com:vncsmyrnk/nix-config.git
