@@ -22,3 +22,5 @@ rclone
 neovim
 rofi
 htop
+nvtop
+envycontrol
