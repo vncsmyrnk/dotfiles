@@ -32,6 +32,9 @@ unset-config +configs:
 install-extra:
   @just extra install
 
+install-custom:
+  nix profile install .
+
 test-recipes:
   #!/usr/bin/env bash
   for config in $(find * -maxdepth 0 -type d -not -path './.git'); do
