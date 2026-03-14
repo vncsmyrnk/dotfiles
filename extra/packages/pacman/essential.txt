@@ -14,6 +14,7 @@ jq
 fzf
 ripgrep
 tree-sitter
+tree-sitter-cli
 oath-toolkit
 fd
 sshfs
