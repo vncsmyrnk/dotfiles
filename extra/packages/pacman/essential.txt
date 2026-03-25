@@ -26,3 +26,4 @@ htop
 nvtop
 envycontrol
 nix
+downgrade
