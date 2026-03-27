@@ -1,12 +1,32 @@
 {
   "nodes": {
+    "fakeapi": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774546836,
+        "narHash": "sha256-OH+HDJ2LwnVPQOJyabKwzo3mFPCuEG8JORODjEGbkds=",
+        "owner": "vncsmyrnk",
+        "repo": "fakeapi",
+        "rev": "0e7e20a015064ba329b77a0ef3bd9fa758e9b5c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vncsmyrnk",
+        "repo": "fakeapi",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1772773019,
-        "narHash": "sha256-E1bxHxNKfDoQUuvriG71+f+s/NT0qWkImXsYZNFFfCs=",
+        "lastModified": 1774386573,
+        "narHash": "sha256-4hAV26quOxdC6iyG7kYaZcM3VOskcPUrdCQd/nx8obc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "aca4d95fce4914b3892661bcb80b8087293536c6",
+        "rev": "46db2e09e1d3f113a13c0d7b81e2f221c63b8ce9",
         "type": "github"
       },
       "original": {
@@ -18,6 +38,7 @@
     },
     "root": {
       "inputs": {
+        "fakeapi": "fakeapi",
         "nixpkgs": "nixpkgs",
         "shell-utils": "shell-utils"
       }
@@ -29,11 +50,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772981441,
-        "narHash": "sha256-ptr4BBpUZ1byp5YY26VY4HHmds25xnse0zferYV0kQE=",
+        "lastModified": 1774609936,
+        "narHash": "sha256-JvPvU72k1+3xV+gMZQG1WIpKtFw3Sr6Lq3yl1wMQg5w=",
         "owner": "vncsmyrnk",
         "repo": "shell-utils",
-        "rev": "42385c05bf94bc67233b6c3fa3b39d1822c098f8",
+        "rev": "03c73302eb826bf89a1c825f4e6d50ad03729dde",
         "type": "github"
       },
       "original": {
