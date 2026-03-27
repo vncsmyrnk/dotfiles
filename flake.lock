@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774546836,
-        "narHash": "sha256-OH+HDJ2LwnVPQOJyabKwzo3mFPCuEG8JORODjEGbkds=",
+        "lastModified": 1774612787,
+        "narHash": "sha256-4Ibi5pweEs/lN2GeCu6zR4YXqEzF+gTqtWiOL4iS4CA=",
         "owner": "vncsmyrnk",
         "repo": "fakeapi",
-        "rev": "0e7e20a015064ba329b77a0ef3bd9fa758e9b5c6",
+        "rev": "6a0f79477318eb3f4f4c5a68a9e9d2451b0376c0",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774609936,
-        "narHash": "sha256-JvPvU72k1+3xV+gMZQG1WIpKtFw3Sr6Lq3yl1wMQg5w=",
+        "lastModified": 1774659971,
+        "narHash": "sha256-/FCjBVJpaPRgnYwT4lwRbEliByZA65TGlKSJoFu6+C4=",
         "owner": "vncsmyrnk",
         "repo": "shell-utils",
-        "rev": "03c73302eb826bf89a1c825f4e6d50ad03729dde",
+        "rev": "4453504e1fe87c64a6ec4da53a4eaa1b617981fd",
         "type": "github"
       },
       "original": {
