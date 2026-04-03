@@ -3,3 +3,4 @@ gnome
 gdm
 gnome-shell-extension-argos-git
 gnome-shell-extension-window-calls-git
+gwin-git
