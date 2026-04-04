@@ -17,3 +17,4 @@ ngrok
 htmlq
 npm
 yarn
+namcap
