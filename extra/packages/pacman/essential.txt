@@ -27,3 +27,4 @@ nvtop
 envycontrol
 nix
 downgrade
+shell-utils-git
