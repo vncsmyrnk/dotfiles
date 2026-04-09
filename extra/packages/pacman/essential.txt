@@ -28,3 +28,4 @@ envycontrol
 nix
 downgrade
 shell-utils-git
+inetutils
