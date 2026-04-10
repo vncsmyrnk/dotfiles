@@ -21,6 +21,7 @@ sshfs
 mkcert
 rclone
 neovim
+lua51
 rofi
 htop
 nvtop
