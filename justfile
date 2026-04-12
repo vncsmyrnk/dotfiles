@@ -32,13 +32,6 @@ unset-config +configs:
 install-extra:
   @just extra install
 
-install-custom:
-  nix profile install .
-
-update-custom:
-  nix flake update
-  nix profile upgrade --all
-
 test-recipes:
   #!/usr/bin/env bash
   for config in $(find * -maxdepth 0 -type d -not -path './.git'); do

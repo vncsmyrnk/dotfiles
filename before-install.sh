@@ -7,15 +7,14 @@ git submodule init
 git submodule update
 
 echo "Checking base deps..."
-command -v git >/dev/null && command -v just >/dev/null &&
-  command -v nix >/dev/null && {
+command -v git >/dev/null && command -v just >/dev/null && {
   echo "deps OK."
   exit 0
 }
 
 echo "installing deps..."
 if [ "$os" = "Arch Linux" ]; then
-  sudo pacman -S git just nix
+  sudo pacman -S git just
 fi
 
 echo "deps installed."
