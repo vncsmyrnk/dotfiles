@@ -31,3 +31,4 @@ downgrade
 shell-utils-git
 inetutils
 openbsd-netcat
+sops
