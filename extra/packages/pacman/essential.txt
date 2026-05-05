@@ -32,3 +32,4 @@ shell-utils-git
 inetutils
 openbsd-netcat
 sops
+udisks2
