@@ -1,0 +1,20 @@
+{
+  "signing": {
+    "backend": "gpg"
+  },
+  "repositories": [
+    {
+      "url": "https://github.com/vncsmyrnk/git-config",
+      "ref": "main",
+      "scripts_path": "scripts/utils",
+      "target_name": "git",
+      "on_update_scripts_path": "scripts/on-update"
+    },
+    {
+      "url": "https://github.com/vncsmyrnk/tmux-config",
+      "ref": "main",
+      "scripts_path": "scripts",
+      "target_name": "tmux"
+    }
+  ]
+}
