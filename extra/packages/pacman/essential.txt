@@ -34,3 +34,4 @@ openbsd-netcat
 sops
 udisks2
 inotify-tools
+dmidecode
