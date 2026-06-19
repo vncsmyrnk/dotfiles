@@ -1,4 +1,0 @@
-claude-code
-openspec
-gemini-cli
-openai-codex

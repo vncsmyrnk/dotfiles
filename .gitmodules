@@ -28,3 +28,6 @@
 [submodule "nix"]
 	path = nix
 	url = git@github.com:vncsmyrnk/nix-config.git
+[submodule "arch"]
+	path = arch
+	url = git@github.com:vncsmyrnk/arch-config.git
