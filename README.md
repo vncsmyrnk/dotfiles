@@ -12,3 +12,7 @@ My linux tools config for general purposes.
 Each config tool is a submodule and must be able to install itself.
 
 Each module should have a `justfile` or `Makefile` with build/installation recipes.
+
+## Install
+
+Config tools can be managed via `dotfiles` command, installable via `make install`.

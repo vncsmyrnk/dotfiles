@@ -1,0 +1,46 @@
+#compdef dotfiles
+
+_dotfiles() {
+  local context state state_descr line
+  typeset -A opt_args
+
+  _arguments -C \
+    '(-d --dir)'{-d,--dir}'[Override the default dotfiles repository path]:path:_files -/' \
+    '(-r --reconfig)'{-r,--reconfig}'[Automatically run config on a submodule if updates were pulled]' \
+    '(-h --help)'{-h,--help}'[Show help message and exit]' \
+    '1: :->actions' \
+    '*:: :->args'
+
+  case $state in
+  actions)
+    local -a actions
+    actions=(
+      'pull:Pulls latest repo updates for root and submodules'
+      'config:Runs the config recipe for a specific submodule or all'
+      'unset-config:Unsets the config recipe for a specific submodule or all'
+    )
+    _describe -t actions 'action' actions
+    ;;
+  args)
+    case $line[1] in
+    config | unset-config)
+      local -a targets
+      targets=('--all:Apply to all submodules' '-a:Apply to all submodules')
+
+      # Dynamically parse submodules if .gitmodules exists
+      if [[ -f .gitmodules ]]; then
+        local submods
+        submods=($(git config --file .gitmodules --get-regexp path 2>/dev/null | awk '{ print $2 }'))
+        for sub in "${submods[@]}"; do
+          targets+=("$sub:Submodule configuration")
+        done
+      fi
+
+      _describe -t targets 'target' targets
+      ;;
+    esac
+    ;;
+  esac
+}
+
+_dotfiles "$@"
