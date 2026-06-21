@@ -224,6 +224,9 @@ main() {
 
   case "$ACTION" in
   pull)
+    if ! submodule_status=$(git submodule status) || grep -qP '^-' <<<"$submodule_status"; then
+      git submodule update --init --recursive
+    fi
     pull_with_confirmation "."
 
     for config in $(get_submodules); do
