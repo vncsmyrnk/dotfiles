@@ -23,7 +23,7 @@ install: all
 	$(INSTALL) -d $(DESTDIR)$(bindir)
 	$(INSTALL) -d $(DESTDIR)$(zshcompdir)
 	$(INSTALL_PROGRAM) $(TARGET) $(DESTDIR)$(bindir)/dotfiles
-	$(INSTALL_DATA) $(SRCDIR)/_dotfiles $(DESTDIR)$(zshcompdir)/_dotfiles
+	$(INSTALL_DATA) $(SRCDIR)/completions.zsh $(DESTDIR)$(zshcompdir)/_dotfiles
 
 .PHONY: uninstall
 uninstall:
