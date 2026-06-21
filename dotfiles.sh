@@ -35,6 +35,7 @@ A simple CLI helper for managing a specific set of dotfiles.
 Flags:
   -d, --dir <path>    Override the default dotfiles repository path
   -r, --reconfig      Automatically run 'config' on a submodule if updates were pulled
+  -f, --force         Pull updates even if a repository has uncommitted changes
   -h, --help          Show this help message and exit
 
 Actions:
@@ -64,16 +65,30 @@ DEFAULT_DIR="${INSTALL_DIR_PLACEHOLDER:-$(dirname "$(realpath "${BASH_SOURCE[0]}
 DOTFILES_DIR="${DOTFILES_DIR:-$DEFAULT_DIR}"
 
 RECONFIG=false
+FORCE_PULL=false
 
 parse_args() {
+  ACTION=""
+  ARGS=()
+
   while [[ $# -gt 0 ]]; do
     case "$1" in
     -d | --dir)
-      DOTFILES_DIR="$2"
-      shift 2
+      if [[ -n "${2:-}" ]]; then
+        DOTFILES_DIR="$2"
+        shift 2
+      else
+        log_error "Missing argument for $1"
+        usage
+        exit 1
+      fi
       ;;
     -r | --reconfig)
       RECONFIG=true
+      shift
+      ;;
+    -f | --force)
+      FORCE_PULL=true
       shift
       ;;
     -h | --help)
@@ -86,19 +101,21 @@ parse_args() {
       exit 1
       ;;
     *)
-      break
+      if [[ -z "$ACTION" ]]; then
+        ACTION="$1"
+      else
+        ARGS+=("$1")
+      fi
+      shift
       ;;
     esac
   done
 
-  ACTION="${1:-}"
   if [[ -z "$ACTION" ]]; then
     log_error "Missing action."
     usage
     exit 1
   fi
-  shift
-  ARGS=("$@")
 }
 
 # --- Core Logic ---
@@ -148,14 +165,17 @@ pull_with_confirmation() (
   local behind
   local user_reply=""
 
-  echo "----------------------------------------"
   log_info "Checking repository: $repo"
   command cd "$repo" || return 1
 
   # Check for uncommitted changes
   if ! git diff-index --quiet HEAD --; then
-    log_warn "Repository '$repo' has uncommitted changes. Skipping pull."
-    return 1
+    if [[ "$repo" != "." ]] && [[ "$FORCE_PULL" != true ]]; then
+      log_warn "Repository '$repo' has uncommitted changes. Skipping pull."
+      return 0
+    else
+      log_warn "Repository '$repo' has uncommitted changes, but proceeding anyway."
+    fi
   fi
 
   git fetch --quiet
@@ -180,7 +200,7 @@ pull_with_confirmation() (
   echo
 
   if [[ "$user_reply" =~ ^[Yy]$ ]]; then
-    if git pull --rebase; then
+    if git pull --rebase --autostash; then
       if [[ "$RECONFIG" == true && "$repo" != "." ]]; then
         run_config "."
       fi
@@ -205,7 +225,8 @@ main() {
     pull_with_confirmation "."
 
     for config in $(get_submodules); do
-      pull_with_confirmation "$config"
+      pull_with_confirmation "$config" 2>&1
+      echo
     done
     ;;
   config)
