@@ -121,7 +121,6 @@ get_submodules() {
 
 run_config() {
   local target_dir="$1"
-  log_info "Configuring $target_dir..."
   (
     cd "$target_dir" || die "Failed to enter directory $target_dir"
     if [[ -f ./justfile ]]; then
@@ -138,7 +137,6 @@ run_config() {
 
 run_unset_config() {
   local target_dir="$1"
-  log_info "Unsetting config for $target_dir..."
   (
     cd "$target_dir" || die "Failed to enter directory $target_dir"
     if [[ -f ./justfile ]]; then
@@ -158,10 +156,7 @@ pull_with_confirmation() (
   local behind
   local user_reply=""
 
-  log_info "Checking repository: $repo"
   command cd "$repo" || return 1
-
-  # Check for uncommitted changes
   if ! git diff-index --quiet HEAD --; then
     if [[ "$repo" != "." ]] && [[ "$FORCE_PULL" != true ]]; then
       log_warn "Repository '$repo' has uncommitted changes. Skipping pull."
@@ -220,7 +215,6 @@ main() {
 
     for config in $(get_submodules); do
       pull_with_confirmation "$config" 2>&1
-      echo
     done
     ;;
   config)
