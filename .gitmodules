@@ -28,3 +28,6 @@
 [submodule "arch"]
 	path = arch
 	url = git@github.com:vncsmyrnk/arch-config.git
+[submodule "agents"]
+	path = agents
+	url = git@github.com:vncsmyrnk/agents.git
