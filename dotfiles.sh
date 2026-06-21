@@ -180,7 +180,8 @@ pull_with_confirmation() (
 
   git fetch --quiet
 
-  behind=$(git rev-list --count 'HEAD..@{u}' 2>/dev/null || true)
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD --short | grep -Po '/\K[a-zA-Z0-9-/]+')
+  behind=$(git rev-list --count "HEAD..$default_branch" 2>/dev/null || true)
   if [[ -z "$behind" ]]; then
     log_warn "No upstream branch configured for '$repo'. Skipping."
     return 1
@@ -193,13 +194,14 @@ pull_with_confirmation() (
 
   log_info "Repository '$repo' is behind by $behind commit(s)."
   echo "Recent changes:"
-  git log --oneline 'HEAD..@{u}'
+  git log --oneline "HEAD..$default_branch"
   echo
 
   read -r -p "Do you want to pull these updates for '$repo'? [y/N] " -n 1 user_reply
   echo
 
   if [[ "$user_reply" =~ ^[Yy]$ ]]; then
+    git checkout "$default_branch"
     if git pull --rebase --autostash; then
       if [[ "$RECONFIG" == true && "$repo" != "." ]]; then
         run_config "."
