@@ -34,7 +34,6 @@ A simple CLI helper for managing a specific set of dotfiles.
 
 Flags:
   -d, --dir <path>    Override the default dotfiles repository path
-  -r, --reconfig      Automatically run 'config' on a submodule if updates were pulled
   -f, --force         Pull updates even if a repository has uncommitted changes
   -h, --help          Show this help message and exit
 
@@ -45,7 +44,6 @@ Actions:
 
 Examples:
   $(basename "$0") pull
-  $(basename "$0") --reconfig pull
   $(basename "$0") config nvim
   $(basename "$0") config --all
 EOF
@@ -64,7 +62,6 @@ INSTALL_DIR_PLACEHOLDER=""
 DEFAULT_DIR="${INSTALL_DIR_PLACEHOLDER:-$(dirname "$(realpath "${BASH_SOURCE[0]}")")}"
 DOTFILES_DIR="${DOTFILES_DIR:-$DEFAULT_DIR}"
 
-RECONFIG=false
 FORCE_PULL=false
 
 parse_args() {
@@ -82,10 +79,6 @@ parse_args() {
         usage
         exit 1
       fi
-      ;;
-    -r | --reconfig)
-      RECONFIG=true
-      shift
       ;;
     -f | --force)
       FORCE_PULL=true
@@ -202,11 +195,7 @@ pull_with_confirmation() (
 
   if [[ "$user_reply" =~ ^[Yy]$ ]]; then
     git checkout "$default_branch"
-    if git pull --rebase --autostash; then
-      if [[ "$RECONFIG" == true && "$repo" != "." ]]; then
-        run_config "."
-      fi
-    else
+    if ! git pull --rebase --autostash; then
       log_error "Failed to pull updates for '$repo'."
       return 1
     fi

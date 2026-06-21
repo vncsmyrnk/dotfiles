@@ -6,7 +6,6 @@ _dotfiles() {
 
   _arguments -C \
     '(-d --dir)'{-d,--dir}'[Override the default dotfiles repository path]:path:_files -/' \
-    '(-r --reconfig)'{-r,--reconfig}'[Automatically run config on a submodule if updates were pulled]' \
     '(-f --force)'{-f,--force}'[Pull updates even if a repository has uncommitted changes]' \
     '(-h --help)'{-h,--help}'[Show help message and exit]' \
     '1: :->actions' \
