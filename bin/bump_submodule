@@ -1,0 +1,77 @@
+#!/usr/bin/env lua
+
+local target_path = arg[1]
+if not target_path then
+  print(string.format("Usage: %s <submodule-path>", arg[0]))
+  os.exit(1)
+end
+
+target_path = target_path:gsub("/+$", "")
+
+local function get_cmd_output(cmd)
+  local f = io.popen(cmd)
+  if not f then
+    return ""
+  end
+  local s = f:read("*a")
+  f:close()
+  return (s:gsub("%s+$", ""))
+end
+
+local ls_out = get_cmd_output(string.format('git ls-files --stage "%s"', target_path))
+local old_sha = ls_out:match("^160000 (%w+) %d+\t")
+
+if not old_sha then
+  print(string.format("❌ Error: '%s' is not a registered submodule in the git index.", target_path))
+  os.exit(1)
+end
+
+local new_sha = get_cmd_output(string.format('git -C "%s" rev-parse HEAD 2>/dev/null', target_path))
+
+if new_sha == "" then
+  print(string.format("❌ Error: could not read HEAD for '%s'. Is the submodule initialized?", target_path))
+  os.exit(1)
+end
+
+if old_sha == new_sha then
+  print(string.format("✅ Submodule '%s' has not been bumped (SHAs match).", target_path))
+  os.exit(0)
+end
+
+local short_old = old_sha:sub(1, 7)
+local short_new = new_sha:sub(1, 7)
+
+local module_name = target_path:match("([^/]+)$") or target_path
+
+print(string.format("📦 Processing %s (%s -> %s)...", module_name, short_old, short_new))
+
+local log_cmd = string.format('git -C "%s" log --format="- %%s" %s..%s', target_path, old_sha, new_sha)
+local commit_msgs = get_cmd_output(log_cmd)
+
+if commit_msgs == "" then
+  commit_msgs = "- (No commit messages found. History rewritten or reversed?)"
+end
+
+local title = string.format("chore(%s): bumps from %s to %s", module_name, short_old, short_new)
+
+local tmp_msg_file = os.tmpname()
+local f = io.open(tmp_msg_file, "w")
+if f then
+  f:write(title .. "\n\n" .. commit_msgs .. "\n")
+  f:close()
+
+  os.execute(string.format('git add "%s"', target_path))
+
+  local r1 = os.execute(string.format('git commit -q -F "%s"', tmp_msg_file))
+
+  if r1 == true or r1 == 0 then
+    print("   ✅ Committed successfully!")
+  else
+    print("   ❌ Git commit failed.")
+  end
+
+  os.remove(tmp_msg_file)
+else
+  print("   ❌ Failed to create temporary file for commit message.")
+  os.exit(1)
+end

@@ -15,3 +15,16 @@ jobs:
           go-version: "1.26"
 
       - run: make
+
+  ci-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "5.1"
+
+      - uses: lunarmodules/luacheck@v1
+        with:
+          args: ./bin/bump_submodule
