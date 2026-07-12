@@ -15,4 +15,11 @@ Each module should have a `justfile` or `Makefile` with build/installation recip
 
 ## Install
 
-Config tools can be managed via `dotfiles` command, installable via `make install`.
+```sh
+git clone git@github.com:vncsmyrnk/dotfiles.git
+cd dotfiles
+git submodule update --init
+make install
+```
+
+`dotfiles-update` pulls the latest updates from each submodule after installation.
