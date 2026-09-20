@@ -1,25 +1,3 @@
-# .dotfiles ⚙️
+[![GitHub main branch check runs](https://img.shields.io/github/check-runs/vncsmyrnk/dotfiles/main?style=plastic&logo=github&label=CI%20workflow)](https://github.com/vncsmyrnk/dotfiles/actions/workflows/ci.yaml)
 
 My linux tools config for general purposes.
-
-## Motivation
-
-- Gather all configuration files for general purpose _CLI_ tools in one place.
-- Have a unique and modular installer
-
-## Structure expected
-
-Each config tool is a submodule and must be able to install itself.
-
-Each module should have a `justfile` or `Makefile` with build/installation recipes.
-
-## Install
-
-```sh
-git clone git@github.com:vncsmyrnk/dotfiles.git
-cd dotfiles
-git submodule update --init
-make install
-```
-
-`dotfiles-update` pulls the latest updates from each submodule after installation.
