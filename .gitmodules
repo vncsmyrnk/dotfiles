@@ -31,3 +31,6 @@
 [submodule "agents"]
 	path = agents
 	url = git@github.com:vncsmyrnk/agents.git
+[submodule "bar"]
+	path = bar
+	url = git@github.com:vncsmyrnk/bar.git
